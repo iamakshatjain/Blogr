@@ -1,6 +1,6 @@
 var express = require("express");
 var app =  express();
-var bodyParser = require("body-parser")
+var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/blogApp",{ useNewUrlParser: true });//db-blogApp
 
@@ -17,11 +17,6 @@ var blogSchema = new mongoose.Schema({
 	created:{type:Date,default:Date.now}
 });
 var blog = new mongoose.model("blog",blogSchema);//collection-blogs
-// blog.create({
-// 	title:"test post",
-// 	image:"https://static.codepen.io/assets/home/codepen-tshirt-efc2f8e7a8f21b57ce6d906679aa56382472b790bc3af04f8d4ef61785838fec.jpg",
-// 	body:"this is just a test post"
-// })
 
 //RESTFUL ROUTES
 //HOME
@@ -38,6 +33,31 @@ app.get("/blogs",function(req,res){
 		else
 			res.render("index",{blogs:blogs});
 	})
+});
+
+//NEW
+app.get("/blogs/new",function(req,res){
+	res.render("new");
+});
+
+//CREATE
+app.post("/blogs",function(req,res){
+	// console.log(req.body);
+	var newblog = {
+		title:req.body.title,
+		image:req.body.image,
+		body:req.body.body
+	};
+
+	blog.create(newblog,function(err,blog){
+		if(err)
+			console.log("error,line#51");
+		else{
+			console.log(blog + "added");
+			res.redirect("/blogs");
+		}
+
+	});
 });
 
 app.listen(process.env.PORT || 3000,process.env.IP,function(){

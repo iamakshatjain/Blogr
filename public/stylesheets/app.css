@@ -2,6 +2,11 @@
 	font-size: 2em;
 }
 
-nav{
-	padding-bottom:50px;
+.container.main{
+	margin-top: 7em;
+}
+
+img{
+	width: 500px;
+	height: 250px;
 }

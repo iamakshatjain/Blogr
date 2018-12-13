@@ -1,14 +1,16 @@
 <% include partials/header.ejs %>
 <% include partials/nav.ejs %>
-<h1>Here you see all your blogs...</h1>
 
-<% blogs.forEach(function(blog){ %>
-	<div><%= blog.created %></div>
-	<h2>blog.title</h2>
-	<img src="<%= blog.image %>">
-	<p>
-		<%= blog.body %>
-	</p>
-<% }); %>
+<div class="ui main text container segment">
+	<h1>Here you see all your blogs...</h1>
+	<% blogs.forEach(function(blog){ %>
+		<div><%= blog.created %></div>
+		<h2><%= blog.title %></h2>
+		<img src="<%= blog.image %>">
+		<p>
+			<%= blog.body %>
+		</p>
+	<% }); %>
+</div>
 <% include partials/footer.ejs %>
 

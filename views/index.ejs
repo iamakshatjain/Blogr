@@ -1,15 +1,24 @@
 <% include partials/header.ejs %>
 <% include partials/nav.ejs %>
 
-<div class="ui main text container segment">
-	<h1>Here you see all your blogs...</h1>
+<div class="ui main text container">
 	<% blogs.forEach(function(blog){ %>
-		<div><%= blog.created %></div>
-		<h2><%= blog.title %></h2>
-		<img src="<%= blog.image %>">
-		<p>
-			<%= blog.body %>
-		</p>
+		<div class="ui centered segment">
+			<div class="item">
+				<h2><%= blog.title %></h2>
+				<div><%= blog.created.toString().slice(0,16); %></div>
+				<img src="<%= blog.image %>" class="ui centered rounded image">
+				<p>
+					<%- blog.body.substring(0,100) %>...
+				</p>	
+				<div>
+					<a href="/blogs/<%= blog._id%>">
+						<button class="ui inverted red button">Read More</button>
+					</a>
+				</div>
+			</div>
+		</div>
+		
 	<% }); %>
 </div>
 <% include partials/footer.ejs %>

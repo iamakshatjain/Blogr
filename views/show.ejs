@@ -1,0 +1,22 @@
+<% include partials/header.ejs %>
+<% include partials/nav.ejs %>
+
+<div class="ui main text container segment">
+	<div class="ui huge header"><%= blog.title %></div>
+	<p><%= blog.created %></p>
+	<img src="<%= blog.image %>" class="show ui centered rounded image">
+	<br>
+	<p>
+		<%- blog.body %>
+	</p>
+	<a href="/blogs/<%= blog._id %>/edit" class="inline">
+			<button class="ui inverted red button">Edit</button>
+	</a>
+	<form action="/blogs/<%=blog._id%>/?_method=DELETE" method="POST" class="inline">
+			<button class="ui inverted red button">Delete</button>
+	</form>	
+	<br class="clearBoth">
+
+</div>
+
+<% include partials/footer.ejs %>
